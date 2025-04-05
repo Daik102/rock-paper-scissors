@@ -6,24 +6,58 @@ function getComputerChoice() {
   let computerChoice;
   
   if (randomNum <= 1 / 3) {
-    computerChoice = "rock";
+     computerChoice = "rock";
   } else if (randomNum > 1 / 3 && randomNum <= 2 /3) {
     computerChoice = "paper";
   } else {
     computerChoice = "scissors";
   }
-  console.log(computerChoice);
+  return computerChoice;
 }
-
-getComputerChoice();
 
 function getHumanChoice() {
-  const humanChoice = prompt("Enter your choice", "");
-  console.log(humanChoice);
+  const initialInput = prompt("Enter your choice", "");
+  const humanChoice = initialInput.toLowerCase();
+  return humanChoice;
 }
 
-getHumanChoice();
-
-function playRound() {
-  
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === "rock") {
+    if (computerChoice === "rock") {
+      console.log("Tie");
+    } else if (computerChoice === "paper") {
+      console.log("You lose!");
+      computerScore++;
+    } else {
+      console.log("You win!");
+      humanScore++;
+    }
+  } else if (humanChoice === "paper") {
+    if (computerChoice === "rock") {
+      console.log("You win!");
+      humanScore++;
+    } else if (computerChoice === "paper") {
+      console.log("Tie");
+    } else {
+      console.log("You lose!");
+      computerScore++;
+    }
+  } else {
+    if (computerChoice === "rock") {
+      console.log("You lose!");
+      computerScore++
+    } else if (computerChoice === "paper") {
+      console.log("You win!");
+      humanScore++;
+    } else {
+      console.log("Tie");
+    }
+  }
+  console.log(`Your score: ${humanScore}`);
+  console.log(`Computer's score: ${computerScore}`);
 }
+
+const computerSelection = getComputerChoice();
+const humanSelection = getHumanChoice();
+
+playRound(humanSelection, computerSelection);
