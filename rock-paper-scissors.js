@@ -22,30 +22,26 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  if (humanChoice === "rock") {
-    if (computerChoice === "rock") {
-      tie();
-    } else if (computerChoice === "paper") {
-      youLose();
-    } else {
-      youWin();
-    }
+  if (humanChoice === computerChoice) {
+    console.log("Tie");
+  } else if (humanChoice === "rock") {
+      if (computerChoice === "paper") {
+        youLose();
+      } else if (computerChoice === "scissors") {
+        youWin();
+      }
   } else if (humanChoice === "paper") {
-    if (computerChoice === "rock") {
-      youWin();
-    } else if (computerChoice === "paper") {
-      tie();
-    } else {
-      youLose();
-    }
-  } else {
-    if (computerChoice === "rock") {
-      youLose();
-    } else if (computerChoice === "paper") {
-      youWin();
-    } else {
-      tie();
-    }
+      if (computerChoice === "rock") {
+        youWin();
+      } else if (computerChoice === "scissors") {
+        youLose();
+      }
+  } else if (humanChoice === "scissors") {
+      if (computerChoice === "rock") {
+        youLose();
+      } else if (computerChoice === "paper") {
+        youWin();
+      }
   }
   console.log(`Your score: ${humanScore}`);
   console.log(`Computer's score: ${computerScore}`);
@@ -59,10 +55,6 @@ function youWin() {
 function youLose() {
   console.log("You lose!");
   computerScore++;
-}
-
-function tie() {
-  console.log("Tie");
 }
 
 let playCount = 0;
