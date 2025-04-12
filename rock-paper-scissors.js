@@ -1,15 +1,17 @@
-document.body.style.marginLeft = '20px';
+document.body.style.marginTop = '40px';
+document.body.style.fontSize = '28px';
 document.body.style.fontFamily = 'Arial, sans-serif';
+document.body.style.textAlign = 'center';
 const monster = document.querySelector('.monster');
 const results = document.querySelector('.results');
 const star = document.querySelector('.star');
+const buttons = document.querySelectorAll('button');
 let humanScore = 0;
 let computerScore = 0;
 let tie = 0;
 let wins = 0;
 let finished;
 let currentMonster = 'slime';
-
 monster.innerHTML = 'You encountered a slime!';
 
 function getComputerChoice() {
@@ -37,13 +39,18 @@ function playRound(humanChoice, computerChoice) {
     results.textContent = 'You lose';
     computerScore++;
   }
-  results.innerHTML += '<br>' + `Your score: ${humanScore}` + '<br>' + `Monster's score: ${computerScore}` + '<br>' + `Tie: ${tie}`;
+  results.innerHTML += '<br>' + `You: ${humanScore}` + '<br>' + `${currentMonster}: ${computerScore}` + '<br>' + `Tie: ${tie}`;
   if (humanScore === 5 || computerScore === 5) {
     if (humanScore === 5) {
-      results.innerHTML += '<br>' + `Congrats! You beat the ${currentMonster}!`;
+      results.innerHTML += '<br>' + `You beat the ${currentMonster}!`;
       star.innerHTML += '&#9734;';
       wins++;
       const descendBtn = document.createElement('button');
+      descendBtn.style.fontSize = '20px';
+      descendBtn.style.padding = '4px 8px';
+      descendBtn.style.background = '#000';
+      descendBtn.style.color = '#fff';
+      descendBtn.style.borderRadius = '4px';
       if (wins === 6) {
         descendBtn.textContent = 'Return';
       } else {
@@ -70,9 +77,20 @@ function playRound(humanChoice, computerChoice) {
         } else if (wins === 6) {
           document.body.style.background = '#fff';
           document.body.style.color = '#000';
-          document.body.style.fontSize = '20px';
-          document.body.style.marginTop = '20px';
-          document.body.innerHTML = '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>' + 'You saved the world!' + '<br>' + 'Thanks for playing' + '<br><br>' + 'Daik 2025' + '<br><br>' + '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;';
+          document.body.innerHTML = '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>' + 'You saved the world!' + '<br>' + 'Thanks for playing' + '<br><br>' + 'Daik 2025' + '<br><br>' + '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>';
+
+          const resetBtn = document.createElement('button');
+          resetBtn.textContent = 'Reset';
+          resetBtn.style.fontSize = '20px';
+          resetBtn.style.padding = '4px 8px';
+          resetBtn.style.background = '#fff';
+          resetBtn.style.color = '#000';
+          resetBtn.style.borderRadius = '4px';
+          document.body.appendChild(resetBtn);
+
+          resetBtn.addEventListener('click', () => {
+            location.reload();
+          });
           return;
         }
         finished = false;
@@ -92,6 +110,11 @@ function playRound(humanChoice, computerChoice) {
     } else {
       results.innerHTML += '<br>' + `You lost to the ${currentMonster}`;
       const tryAgainBtn = document.createElement('button');
+      tryAgainBtn.style.fontSize = '20px';
+      tryAgainBtn.style.padding = '4px 8px';
+      tryAgainBtn.style.background = '#fff';
+      tryAgainBtn.style.color = '#000';
+      tryAgainBtn.style.borderRadius = '4px';
       tryAgainBtn.textContent = 'Try Again';
       document.body.appendChild(tryAgainBtn);
       tryAgainBtn.addEventListener('click', () => {
@@ -115,6 +138,12 @@ function playRound(humanChoice, computerChoice) {
 
 const btns = document.querySelectorAll('.btn');
 btns.forEach((btn) => {
+  btn.style.fontSize = '20px';
+  btn.style.padding = '4px 8px';
+  btn.style.background = '#000';
+  btn.style.color = '#fff';
+  btn.style.margin = '0 2px';
+  btn.style.borderRadius = '4px';
   btn.addEventListener('click', (e) => {
     if (finished) {
       return;
