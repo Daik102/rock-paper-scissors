@@ -1,4 +1,4 @@
-document.body.style.marginTop = '40px';
+document.body.style.marginTop = '60px';
 document.body.style.fontSize = '28px';
 document.body.style.fontFamily = 'Arial, sans-serif';
 document.body.style.textAlign = 'center';
