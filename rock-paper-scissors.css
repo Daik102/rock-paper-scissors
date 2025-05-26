@@ -1,0 +1,110 @@
+@font-face {
+  font-family: Roboto;
+  src: url(./font/Roboto-VariableFont_wdth\,wght.woff2) format('woff2');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 10px;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+body {
+  font-size: 2.8rem;
+  text-align: center;
+  background-color: #bbb;
+}
+
+.container {
+  padding: 10rem 0;
+  background-color: #fff;
+}
+
+.star {
+  height: 4rem;
+  margin: 0.8rem 1.2rem;
+  font-size: 2.8rem;
+}
+
+h3 {
+  font-size: 4rem;
+}
+
+.monster {
+  margin: 4rem 0;
+  font-size: 2.8rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.btn,
+.descend-btn,
+.try-again-btn,
+.return-btn {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0.8rem 1.6rem;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+}
+
+.btn:hover {
+  background-color: mediumblue;
+}
+
+.dungeon {
+  display: flex;
+  justify-content: center;
+  border-bottom: 0.2rem solid #000;
+  background-color: #fff;
+}
+
+.dungeon div {
+  width: 20rem;
+  height: 28rem;
+  border-radius: 20rem 20rem 0 0;
+  background-color: #000;
+}
+
+.results {
+  margin: 3.2rem 0;
+  font-size: 2.8rem;
+}
+
+.descend-btn:hover {
+  background-color: orangered;
+}
+
+.try-again-btn:hover,
+.return-btn:hover {
+  background-color: #fff;
+  color: #000;
+  outline: 0.2rem solid #000;
+}
+
+.reset-btn {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0.8rem 1.6rem;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 0.4rem;
+}
+
+.reset-btn:hover {
+  color: #fff;
+  background-color: #000;
+}

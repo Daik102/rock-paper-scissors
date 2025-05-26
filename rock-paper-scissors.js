@@ -1,18 +1,45 @@
-document.body.style.marginTop = '60px';
-document.body.style.fontSize = '28px';
-document.body.style.fontFamily = 'Arial, sans-serif';
-document.body.style.textAlign = 'center';
+const container = document.querySelector('.container');
 const monster = document.querySelector('.monster');
+const dungeon = document.querySelector('.dungeon');
 const results = document.querySelector('.results');
 const star = document.querySelector('.star');
-const buttons = document.querySelectorAll('button');
+const btnContainer = document.querySelector('.btn-container');
+const enterBtn = document.querySelector('.enter-btn');
 let humanScore = 0;
 let computerScore = 0;
 let tie = 0;
 let wins = 0;
 let finished;
 let currentMonster = 'slime';
-monster.innerHTML = 'You encountered a slime!';
+monster.innerHTML = 'You came to the entrance of the dungeon.';
+
+enterBtn.addEventListener('click', () => {
+  document.body.style.backgroundColor = '#0000';
+  container.style.padding = '10rem 0 0';
+  container.style.backgroundColor = '#0000';
+  dungeon.style.backgroundColor = '#0000';
+  dungeon.style.borderBottom = 'none';
+  dungeon.innerHTML = '';
+
+  btnContainer.innerHTML = `
+    <button class="btn" id="rock">Rock</button>
+    <button class="btn" id="paper">Paper</button>
+    <button class="btn" id="scissors">Scissors</button>
+  `;
+  monster.innerHTML = `You encountered a ${currentMonster}!`;
+
+  const btns = document.querySelectorAll('.btn');
+  btns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (finished) {
+        return;
+      }
+      const humanSelection = e.target.id;
+      const computerSelection = getComputerChoice();
+      playRound(humanSelection, computerSelection);
+    });
+  });
+});
 
 function getComputerChoice() {
   const randomNum = Math.random();
@@ -46,15 +73,13 @@ function playRound(humanChoice, computerChoice) {
       star.innerHTML += '&#9734;';
       wins++;
       const descendBtn = document.createElement('button');
-      descendBtn.style.fontSize = '20px';
-      descendBtn.style.padding = '4px 8px';
-      descendBtn.style.background = '#000';
-      descendBtn.style.color = '#fff';
-      descendBtn.style.borderRadius = '4px';
+      
       if (wins === 6) {
         descendBtn.textContent = 'Return';
+        descendBtn.classList.add('return-btn');
       } else {
         descendBtn.textContent = 'Descend';
+        descendBtn.classList.add('descend-btn');
       }
       document.body.appendChild(descendBtn);
       descendBtn.addEventListener('click', () => {
@@ -77,15 +102,12 @@ function playRound(humanChoice, computerChoice) {
         } else if (wins === 6) {
           document.body.style.background = '#fff';
           document.body.style.color = '#000';
-          document.body.innerHTML = '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>' + 'You saved the world!' + '<br>' + 'Thanks for playing' + '<br><br>' + 'Daik 2025' + '<br><br>' + '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>';
+          document.body.innerHTML = '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>' + 'You saved the world!' + '<br>' + 'Thanks for playing' + '<br><br>' + '2025 Daik' + '<br><br>' + '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>';
+          document.body.style.padding = '10.8rem 0';
 
           const resetBtn = document.createElement('button');
           resetBtn.textContent = 'Reset';
-          resetBtn.style.fontSize = '20px';
-          resetBtn.style.padding = '4px 8px';
-          resetBtn.style.background = '#fff';
-          resetBtn.style.color = '#000';
-          resetBtn.style.borderRadius = '4px';
+          resetBtn.classList.add('reset-btn');
           document.body.appendChild(resetBtn);
 
           resetBtn.addEventListener('click', () => {
@@ -110,12 +132,8 @@ function playRound(humanChoice, computerChoice) {
     } else {
       results.innerHTML += '<br>' + `You lost to the ${currentMonster}`;
       const tryAgainBtn = document.createElement('button');
-      tryAgainBtn.style.fontSize = '20px';
-      tryAgainBtn.style.padding = '4px 8px';
-      tryAgainBtn.style.background = '#fff';
-      tryAgainBtn.style.color = '#000';
-      tryAgainBtn.style.borderRadius = '4px';
       tryAgainBtn.textContent = 'Try Again';
+      tryAgainBtn.classList.add('try-again-btn');
       document.body.appendChild(tryAgainBtn);
       tryAgainBtn.addEventListener('click', () => {
         finished = false;
@@ -135,21 +153,3 @@ function playRound(humanChoice, computerChoice) {
     finished = true;
   }
 }
-
-const btns = document.querySelectorAll('.btn');
-btns.forEach((btn) => {
-  btn.style.fontSize = '20px';
-  btn.style.padding = '4px 8px';
-  btn.style.background = '#000';
-  btn.style.color = '#fff';
-  btn.style.margin = '0 2px';
-  btn.style.borderRadius = '4px';
-  btn.addEventListener('click', (e) => {
-    if (finished) {
-      return;
-    }
-    const humanSelection = e.target.id;
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-  });
-});
