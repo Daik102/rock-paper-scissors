@@ -11,7 +11,7 @@ let tie = 0;
 let wins = 0;
 let finished;
 let currentMonster = 'slime';
-monster.innerHTML = 'You came to the entrance of the dungeon.';
+monster.textContent = 'You came to the entrance of the dungeon.';
 
 enterBtn.addEventListener('click', () => {
   document.body.style.backgroundColor = '#0000';
@@ -21,19 +21,19 @@ enterBtn.addEventListener('click', () => {
   dungeon.style.borderBottom = 'none';
   dungeon.innerHTML = '';
 
+  monster.textContent = `You encountered a ${currentMonster}!`;
   btnContainer.innerHTML = `
     <button class="btn" id="rock">Rock</button>
     <button class="btn" id="paper">Paper</button>
     <button class="btn" id="scissors">Scissors</button>
   `;
-  monster.innerHTML = `You encountered a ${currentMonster}!`;
 
   const btns = document.querySelectorAll('.btn');
+
   btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-      if (finished) {
-        return;
-      }
+      if (finished) return;
+
       const humanSelection = e.target.id;
       const computerSelection = getComputerChoice();
       playRound(humanSelection, computerSelection);
@@ -52,24 +52,54 @@ function getComputerChoice() {
   } else {
     computerChoice = 'scissors';
   }
+
   return computerChoice;
+}
+
+function setBattle(btn) {
+  humanScore = 0;
+
+  if (wins === 4) {
+    computerScore = 1;
+  } else if (wins === 5) {
+    computerScore = 2;
+  } else {
+    computerScore = 0;
+  }
+
+  tie = 0;
+  finished = false;
+  results.textContent = '';
+  container.removeChild(btn);
+  monster.textContent = `You encountered a ${currentMonster}!`;
 }
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    tie++;
+    tie += 1;
     results.textContent = 'Tie';
-  } else if (humanChoice === 'rock' && computerChoice === 'scissors' || humanChoice === 'paper' && computerChoice === 'rock' || humanChoice === 'scissors' && computerChoice === 'paper') {
-    humanScore++;
+  } else if (
+    humanChoice === 'rock' && computerChoice === 'scissors' || 
+    humanChoice === 'paper' && computerChoice === 'rock' || 
+    humanChoice === 'scissors' && computerChoice === 'paper'
+  ) {
+    humanScore += 1;
     results.textContent = 'You win!';
   } else {
-    computerScore++;
+    computerScore += 1;
     results.textContent = 'You lose';
   }
-  results.innerHTML += '<br>' + `You: ${humanScore}` + '<br>' + `${currentMonster}: ${computerScore}` + '<br>' + `Tie: ${tie}`;
+  
+  results.innerHTML += 
+  '<br>' + 
+  `You: ${humanScore}` + 
+  '<br>' + 
+  `${currentMonster}: ${computerScore}` + 
+  '<br>' + 
+  `Tie: ${tie}`;
   
   if (humanScore === 5) {
-    wins++;
+    wins += 1;
     finished = true;
     star.innerHTML += '&#9734;';
     results.innerHTML += '<br>' + `You beat the ${currentMonster}!`;
@@ -83,6 +113,7 @@ function playRound(humanChoice, computerChoice) {
       descendBtn.classList = 'descend-btn';
       descendBtn.textContent = 'Descend';
     }
+    
     container.appendChild(descendBtn);
 
     descendBtn.addEventListener('click', () => {
@@ -106,7 +137,17 @@ function playRound(humanChoice, computerChoice) {
         document.body.style.padding = '10.8rem 0';
         document.body.style.background = '#fff';
         document.body.style.color = '#000';
-        document.body.innerHTML = '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>' + 'You saved the world!' + '<br>' + 'Thanks for playing' + '<br><br>' + '2025 Daik' + '<br><br>' + '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + '<br><br>';
+        document.body.innerHTML = 
+        '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + 
+        '<br><br>' + 
+        'You saved the world!' + 
+        '<br>' + 
+        'Thanks for playing' + 
+        '<br><br>' + 
+        '2025 Daik' + 
+        '<br><br>' + 
+        '&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;&#9734;' + 
+        '<br><br>';
 
         const resetBtn = document.createElement('button');
         resetBtn.textContent = 'Reset';
@@ -116,25 +157,13 @@ function playRound(humanChoice, computerChoice) {
         resetBtn.addEventListener('click', () => {
           location.reload();
         });
+
         return;
       }
-      humanScore = 0;
-      if (wins === 4) {
-        computerScore = 1;
-      } else if (wins === 5) {
-        computerScore = 2;
-      } else {
-        computerScore = 0;
-      }
-      tie = 0;
-      finished = false;
-      results.textContent = '';
-      container.removeChild(descendBtn);
-      monster.textContent = `You encountered a ${currentMonster}!`;
+
+      setBattle(descendBtn);
     });
-  } 
-    
-  if (computerScore === 5) {
+  } else if (computerScore === 5) {
     finished = true;
     results.innerHTML += '<br>' + `You lost to the ${currentMonster}`;
 
@@ -144,18 +173,7 @@ function playRound(humanChoice, computerChoice) {
     container.appendChild(tryAgainBtn);
 
     tryAgainBtn.addEventListener('click', () => {
-      humanScore = 0;
-      if (wins === 4) {
-        computerScore = 1;
-      } else if (wins === 5) {
-        computerScore = 2; 
-      } else {
-        computerScore = 0;
-      }
-      tie = 0;
-      finished = false;
-      results.textContent = '';
-      container.removeChild(tryAgainBtn);
+      setBattle(tryAgainBtn);
     });
   }
 }
