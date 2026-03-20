@@ -81,6 +81,7 @@ body {
 }
 
 .container {
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,7 +115,7 @@ body {
   text-align: center;
   margin: 2.8rem 0;
   font-weight: 600;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
 }
 
 .btn-container {
@@ -169,7 +170,7 @@ body {
 
 .result-board {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .icon-container {
@@ -217,13 +218,14 @@ body {
 
 .energy-display {
   text-align: center;
-  width: 12rem;
+  width: 16rem;
   height: 3.2rem;
+  letter-spacing: -0.2rem;
 }
 
 .dungeon,
 .ground {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -269,7 +271,7 @@ body {
 
 .ending {
   gap: 1.6rem;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
 }
 
 .ending-message-container {
