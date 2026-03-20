@@ -13,18 +13,32 @@ function getMonsterMove() {
   return monsterMove;
 }
 
-function getSkullHTML() {
-  let whiteIcon = '';
-    
-  if (wins >= 3) {
-    whiteIcon = 'white-icon';
+function getIconHTML(energy) {
+  let iconHTML = '';
+
+  if (energy) {
+    let whiteEnergy = '';
+
+    if (wins >= 3) {
+      whiteEnergy = 'white-energy';
+    }
+
+    for (let i = 0; i < energy; i++) {
+      iconHTML += `<div class="energy-bar ${whiteEnergy}"></div>`;
+    }
+  } else {
+    let whiteIcon = '';
+
+    if (wins >= 3) {
+      whiteIcon = 'white-icon';
+    }
+
+    iconHTML = `
+      <img class="icon skull-icon ${whiteIcon}" src="./icons/skull-crossbones.svg" alt="skull-crossbones">
+    `;
   }
 
-  const skullHTML = `
-    <img class="icon skull-icon ${whiteIcon}" src="./icons/skull-crossbones.svg" alt="skull-crossbones">
-  `;
-
-  return skullHTML;
+  return iconHTML;
 }
 
 function handleFlash() {
@@ -110,14 +124,10 @@ function playRound(e) {
 
       if (message.textContent === 'You win!') {
         monsterEnergy -= 1;
-        let monsterEnergyBar = '&#9646';
-        
-        for (let i = 1; i < monsterEnergy; i++) {
-          monsterEnergyBar += '&#9646';
-        }
+        let monsterEnergyBar = getIconHTML(monsterEnergy);
 
         if (monsterEnergy === 0) {
-          monsterEnergyBar = getSkullHTML();
+          monsterEnergyBar = getIconHTML();
           handleFlash();
           star.innerHTML += '&#9734;';
           star.classList.add('rotate-star');
@@ -136,14 +146,10 @@ function playRound(e) {
         monsterEnergyDisplay.innerHTML = monsterEnergyBar;
       } else if (message.textContent === `${currentMonster} win!`) {
         humanEnergy -= 1;
-        let humanEnergyBar = '&#9646';
-
-        for (let i = 1; i < humanEnergy; i++) {
-          humanEnergyBar += '&#9646';
-        }
+        let humanEnergyBar = getIconHTML(humanEnergy);
 
         if (humanEnergy === 0) {
-          humanEnergyBar = getSkullHTML();
+          humanEnergyBar = getIconHTML();
           handleFlash();
           message.textContent = `You lost to the ${currentMonster}`;
           disableActionBtns();
@@ -209,16 +215,8 @@ function renderResult(humanMove, monsterMove) {
     monsterMove = lowercasedMonsterArray[wins];
   }
 
-  let humanEnergyBar = '&#9646';
-  let monsterEnergyBar = '&#9646';
-
-  for (let i = 1; i < humanEnergy; i++) {
-    humanEnergyBar += '&#9646';
-  }
-
-  for (let i = 1; i < monsterEnergy; i++) {
-    monsterEnergyBar += '&#9646';
-  }
+  let humanEnergyBar = getIconHTML(humanEnergy);
+  let monsterEnergyBar = getIconHTML(monsterEnergy);
 
   result.innerHTML = `
     <div class="result-board">

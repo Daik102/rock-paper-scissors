@@ -217,10 +217,22 @@ body {
 }
 
 .energy-display {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
   width: 16rem;
-  height: 3.2rem;
-  letter-spacing: -0.2rem;
+  height: 2.8rem;
+}
+
+.energy-bar {
+  width: 0.8rem;
+  height: 1.6rem;
+  background-color: var(--black-theme);
+}
+
+.white-energy {
+  background-color: var(--white-theme);
 }
 
 .dungeon,
