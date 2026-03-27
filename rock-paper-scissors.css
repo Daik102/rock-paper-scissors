@@ -39,11 +39,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: var(--white-theme);
-}
-
-.win-zero {
   margin: 0 auto;
+  padding-bottom: 2rem;
+  background-color: var(--white-theme);
 }
 
 .win-one {
@@ -81,7 +79,6 @@ body {
 }
 
 .container {
-  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,13 +241,13 @@ body {
 }
 
 .dungeon {
-  bottom: 8rem;
+  bottom: 6rem;
   border-bottom: 0.2rem solid var(--black-theme);
 }
 
 .entrance {
-  width: 16rem;
-  height: 24rem;
+  width: 12rem;
+  height: 18rem;
   background-color: var(--black-theme);
   border-radius: 20rem 20rem 0 0;
 }
@@ -259,18 +256,18 @@ body {
   bottom: 0;
   display: flex;
   align-items: center;
-  height: 8rem;
+  height: 6rem;
   background-color: var(--ground-theme);
 }
 
-.ground a {
+.ground .link {
   padding: 0.2rem;
   font-size: 1.6rem;
   color: var(--black-theme);
   text-decoration: none;
 }
 
-.ground a:hover {
+.ground .link:hover {
   text-decoration: underline;
 }
 
@@ -308,92 +305,41 @@ body {
 /* For smartphones in portrait mode */
 @media screen and (orientation: portrait) {
   html {
+    font-size: 6.5px;
+  }
+}
+
+@media screen and (orientation: portrait) and (min-width: 22.5em) {
+  html {
     font-size: 7.5px;
   }
 }
 
-@media screen and (orientation: portrait) and (min-width: 20.01rem) {
+@media screen and (orientation: portrait) and (min-width: 23.4em) {
+  html {
+    font-size: 7.75px;
+  }
+}
+
+@media screen and (orientation: portrait) and (min-width: 24.3em) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media screen and (orientation: portrait) and (min-width: 25.75em) {
   html {
     font-size: 8.5px;
   }
 }
 
-@media screen and (orientation: portrait) and (min-width: 24rem) and (min-height: calc(50rem - 6rem)) {
+@media screen and (orientation: portrait) and (min-width: 26.75em) {
   html {
-    font-size: 9px;
-  }
-}
-
-@media screen and (orientation: portrait) and (min-width: 24rem) and (min-height: calc(56rem - 6rem)) {
-  html {
-    font-size: 10px;
+    font-size: 8.75px;
   }
 }
 /* For tablets in portrait mode */
-@media screen and (orientation: portrait) and (min-width: 48rem) {
-  .dungeon {
-    bottom: 10rem;
-  }
-
-  .entrance {
-    width: 20rem;
-    height: 30rem;
-  }
-
-  .ground {
-    height: 10rem;
-  }
-}
-/* For smartphones in landscape mode */
-@media screen and (orientation: landscape) {
-  html {
-    font-size: 6px;
-  }
-
-  .win-zero {
-    width: 44rem;
-  }
-
-  .dungeon {
-    bottom: 6rem;
-  }
-
-  .entrance {
-    width: 12rem;
-    height: 18rem;
-  }
-
-  .ground {
-    height: 6rem;
-  }
-}
-
-@media screen and (orientation: landscape) and (min-width: 41rem) {
-  html {
-    font-size: 6.5px;
-  }
-}
-
-@media screen and (orientation: landscape) and (min-width: 47rem) {
-  html {
-    font-size: 7px;
-  }
-}
-
-@media screen and (orientation: landscape) and (min-width: 53rem) {
-  html {
-    font-size: 8px;
-  }
-}
-/* For Nest Hub */
-@media screen and (orientation: landscape) and (min-width: 64rem) {
-  html {
-    font-size: 9px;
-  }
-}
-
-/* For Nest Hub Max*/
-@media screen and (orientation: landscape) and (min-width: 64rem) and (min-height: calc(40rem - 6rem)){
+@media screen and (orientation: portrait) and (min-width: 48em) {
   html {
     font-size: 10px;
   }
@@ -411,18 +357,100 @@ body {
     height: 8rem;
   }
 }
-/* For tablets in landscape mode and laptops */
-@media screen and (orientation: landscape) and (min-width: 64rem) and (min-height: calc(52rem - 6rem)) {
+/* For smartphones in landscape mode */
+@media screen and (orientation: landscape) {
+  html {
+    font-size: 6.5px;
+  }
+
+  .main {
+    padding-bottom: 0;
+  }
+
+  .win-zero {
+    width: 44rem;
+  }
+
   .dungeon {
-    bottom: 10rem;
+    bottom: 4rem;
   }
 
   .entrance {
-    width: 20rem;
-    height: 30rem;
+    width: 8rem;
+    height: 12rem;
   }
 
   .ground {
-    height: 10rem;
+    height: 4rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 41.6em) {
+  html {
+    font-size: 7.5px;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 46.25em) {
+  html {
+    font-size: 7.75px;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 50em) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 55.75em) {
+  html {
+    font-size: 8.5px;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 58em) {
+  html {
+    font-size: 8.75px;
+  }
+}
+/* For small tablets in landscape mode */
+@media screen and (orientation: landscape) and (min-width: 64em) {
+  html {
+    font-size: 9px;
+  }
+
+  .dungeon {
+    bottom: 6rem;
+  }
+
+  .entrance {
+    width: 12rem;
+    height: 18rem;
+  }
+
+  .ground {
+    height: 6rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 73.75rem) {
+  html {
+    font-size: 10px;
+  }
+}
+/* For middle and large tablets in landscape mode, laptops, and desktops */
+@media screen and (orientation: landscape) and (min-width: 84rem) {
+  .dungeon {
+    bottom: 8rem;
+  }
+
+  .entrance {
+    width: 16rem;
+    height: 24rem;
+  }
+
+  .ground {
+    height: 8rem;
   }
 }
