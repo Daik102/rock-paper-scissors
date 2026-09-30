@@ -164,9 +164,9 @@ function playRound(e) {
 }
 
 function renderBattleMode() {
-  result.classList.remove('hidden');
+  container.classList.remove('title-page-container');
+  result.classList.remove('none');
   dungeon.classList.add('none');
-  ground.classList.add('none');
   const actionArray = ['rock', 'paper', 'scissors'];
   btnContainer.innerHTML = '';
 
@@ -289,11 +289,11 @@ function resetGame(condition) {
   enterBtn.textContent = 'Enter';
   btnContainer.innerHTML = '';
   btnContainer.appendChild(enterBtn);
-  result.classList.add('hidden');
+  result.classList.add('none');
   renderResult();
   container.classList.remove('none');
+  container.classList.add('title-page-container');
   dungeon.classList.remove('none');
-  ground.classList.remove('none');
   enterBtn.addEventListener('click', setupGame);
 }
 
