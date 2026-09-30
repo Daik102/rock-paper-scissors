@@ -313,8 +313,8 @@ body {
   display: none;
 }
 
-/* Large Smartphones */
-@media screen and (min-width: 25.75em) {
+/* Middle and Large Smartphones */
+@media screen and (min-width: 24.25em) {
   html {
     font-size: 56.25%;
   }
